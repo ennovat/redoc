@@ -40,7 +40,10 @@ export interface OpenAPIPaths {
   [path: string]: OpenAPIPath;
 }
 export interface OpenAPIRef {
+  'x-refsStack'?: string[];
   $ref: string;
+  summary?: string;
+  description?: string;
 }
 
 export type Referenced<T> = OpenAPIRef | T;
@@ -118,7 +121,7 @@ export interface OpenAPISchema {
   unevaluatedProperties?: boolean | OpenAPISchema;
   description?: string;
   default?: any;
-  items?: OpenAPISchema;
+  items?: OpenAPISchema | OpenAPISchema[] | boolean;
   required?: string[];
   readOnly?: boolean;
   writeOnly?: boolean;
@@ -156,6 +159,8 @@ export interface OpenAPISchema {
   const?: string;
   contentEncoding?: string;
   contentMediaType?: string;
+  prefixItems?: OpenAPISchema[];
+  additionalItems?: OpenAPISchema | boolean;
 }
 
 export interface OpenAPIDiscriminator {

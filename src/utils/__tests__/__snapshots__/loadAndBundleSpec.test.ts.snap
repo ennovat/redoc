@@ -352,6 +352,37 @@ Object {
       },
       "User": Object {
         "properties": Object {
+          "addresses": Object {
+            "additionalItems": Object {
+              "type": "string",
+            },
+            "items": Array [
+              Object {
+                "properties": Object {
+                  "city": Object {
+                    "minLength": 0,
+                    "type": "string",
+                  },
+                  "country": Object {
+                    "minLength": 0,
+                    "type": "string",
+                  },
+                  "street": Object {
+                    "description": "includes build/apartment number",
+                    "minLength": 0,
+                    "type": "string",
+                  },
+                },
+                "type": "object",
+              },
+              Object {
+                "type": "number",
+              },
+            ],
+            "maxLength": 10,
+            "minItems": 0,
+            "type": "array",
+          },
           "email": Object {
             "description": "User email address",
             "example": "john.smith@example.com",
@@ -482,7 +513,7 @@ Petstore offers two forms of authentication:
 OAuth2 - an open protocol to allow secure authorization in a simple
 and standard method from web, mobile and desktop applications.
 
-<SecurityDefinitions />
+<!-- ReDoc-Inject: <security-definitions> -->
 ",
     "license": Object {
       "name": "Apache 2.0",
@@ -2230,6 +2261,7 @@ Object {
           "id": Object {
             "$ref": "#/components/schemas/Id",
             "description": "Tag ID",
+            "type": "number",
           },
           "name": Object {
             "description": "Tag name",
@@ -2257,6 +2289,37 @@ Object {
           "title": "userStatus === 10",
         },
         "properties": Object {
+          "addresses": Object {
+            "items": Object {
+              "type": "string",
+            },
+            "maxLength": 10,
+            "minItems": 0,
+            "prefixItems": Array [
+              Object {
+                "properties": Object {
+                  "city": Object {
+                    "minLength": 0,
+                    "type": "string",
+                  },
+                  "country": Object {
+                    "minLength": 0,
+                    "type": "string",
+                  },
+                  "street": Object {
+                    "description": "includes build/apartment number",
+                    "minLength": 0,
+                    "type": "string",
+                  },
+                },
+                "type": "object",
+              },
+              Object {
+                "type": "number",
+              },
+            ],
+            "type": "array",
+          },
           "email": Object {
             "description": "User email address",
             "example": "john.smith@example.com",

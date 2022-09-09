@@ -2,14 +2,9 @@ import defaultTheme, { ResolvedThemeInterface, resolveTheme, ThemeInterface } fr
 import { querySelector } from '../utils/dom';
 import { isArray, isNumeric, mergeObjects } from '../utils/helpers';
 
-import { LabelsConfigRaw, setRedocLabels } from './Labels';
-import { MDXComponentMeta } from './MarkdownRenderer';
-
-export enum SideNavStyleEnum {
-  SummaryOnly = 'summary-only',
-  PathOnly = 'path-only',
-  IdOnly = 'id-only',
-}
+import { setRedocLabels } from './Labels';
+import { SideNavStyleEnum } from './types';
+import type { LabelsConfigRaw, MDXComponentMeta } from './types';
 
 export interface RedocRawOptions {
   theme?: ThemeInterface;
@@ -21,7 +16,6 @@ export interface RedocRawOptions {
   sortEnumValuesAlphabetically?: boolean | string;
   sortOperationsAlphabetically?: boolean | string;
   sortTagsAlphabetically?: boolean | string;
-  noAutoAuth?: boolean | string;
   nativeScrollbars?: boolean | string;
   pathInMiddlePanel?: boolean | string;
   untrustedSpec?: boolean | string;
@@ -42,6 +36,8 @@ export interface RedocRawOptions {
   expandSingleSchemaField?: boolean | string;
   schemaExpansionLevel?: number | string | 'all';
   showObjectSchemaExamples?: boolean | string;
+  showSecuritySchemeType?: boolean;
+  hideSecuritySection?: boolean;
 
   unstable_ignoreMimeParameters?: boolean;
 
@@ -224,7 +220,6 @@ export class RedocNormalizedOptions {
   sortEnumValuesAlphabetically: boolean;
   sortOperationsAlphabetically: boolean;
   sortTagsAlphabetically: boolean;
-  noAutoAuth: boolean;
   nativeScrollbars: boolean;
   pathInMiddlePanel: boolean;
   untrustedSpec: boolean;
@@ -245,6 +240,8 @@ export class RedocNormalizedOptions {
   expandSingleSchemaField: boolean;
   schemaExpansionLevel: number;
   showObjectSchemaExamples: boolean;
+  showSecuritySchemeType?: boolean;
+  hideSecuritySection?: boolean;
 
   /* tslint:disable-next-line */
   unstable_ignoreMimeParameters: boolean;
@@ -294,7 +291,6 @@ export class RedocNormalizedOptions {
     this.sortEnumValuesAlphabetically = argValueToBoolean(raw.sortEnumValuesAlphabetically);
     this.sortOperationsAlphabetically = argValueToBoolean(raw.sortOperationsAlphabetically);
     this.sortTagsAlphabetically = argValueToBoolean(raw.sortTagsAlphabetically);
-    this.noAutoAuth = argValueToBoolean(raw.noAutoAuth);
     this.nativeScrollbars = argValueToBoolean(raw.nativeScrollbars);
     this.pathInMiddlePanel = argValueToBoolean(raw.pathInMiddlePanel);
     this.untrustedSpec = argValueToBoolean(raw.untrustedSpec);
@@ -317,6 +313,8 @@ export class RedocNormalizedOptions {
     this.expandSingleSchemaField = argValueToBoolean(raw.expandSingleSchemaField);
     this.schemaExpansionLevel = argValueToExpandLevel(raw.schemaExpansionLevel);
     this.showObjectSchemaExamples = argValueToBoolean(raw.showObjectSchemaExamples);
+    this.showSecuritySchemeType = argValueToBoolean(raw.showSecuritySchemeType);
+    this.hideSecuritySection = argValueToBoolean(raw.hideSecuritySection);
 
     this.unstable_ignoreMimeParameters = argValueToBoolean(raw.unstable_ignoreMimeParameters);
 
